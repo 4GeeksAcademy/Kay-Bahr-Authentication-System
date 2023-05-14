@@ -7,8 +7,8 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { Signup } from "./pages/signup.jsx";
-import { Login } from "./pages/login";
-import { Private } from "./pages/private";
+import { Login } from "./pages/login.jsx";
+import { Private } from "./pages/private.jsx";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
