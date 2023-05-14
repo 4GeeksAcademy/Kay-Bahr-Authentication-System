@@ -11,7 +11,9 @@ export function Login() {
                 Password: 
             </h1>
             <button>
-                Login
+                <Link to="/private">
+					<button className="btn btn-primary">Login</button>
+				</Link>
             </button>
         </div>
     )

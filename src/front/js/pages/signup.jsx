@@ -10,9 +10,9 @@ export function Signup() {
             <h1>
                 Password: 
             </h1>
-            <button>
-                Submit
-            </button>
+            <Link to="/">
+			    <button className="btn btn-primary">Submit</button>
+			</Link>
         </div>
     )
 }
