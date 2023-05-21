@@ -16,7 +16,7 @@ export const Private = props => {
                     </Link>
                     <div className="ml-auto">
                         <Link to="/">
-                            <button className="btn btn-primary">Logout</button>
+                            <button className="btn btn-primary" id="btn">Logout</button>
                         </Link>
                     </div>
                 </div>
@@ -25,7 +25,7 @@ export const Private = props => {
             <h1>This is the Private Page of {store.demo[params.theid].title}</h1>
 
             <Link to="/">
-				<span className="btn btn-primary btn-lg" href="#" role="button">
+				<span className="btn btn-primary btn-lg" href="#" role="button" id="btn">
 					Back home
 				</span>
 			</Link>
