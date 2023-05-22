@@ -1,34 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export function Login() {
+    const {store, actions} = useContext(Context);
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const history = useHistory();
 
+    console.log("This is your token: ", store.token);
     const handleClick = () => {
-
-        const opts = {
-            method: 'POST',
-            body: JSON.stringify({
-                "email": email,
-                "password": password
-            })
-        }
-
-        fetch('https://kaybahr-urban-guacamole-r95q7vxgr4w3x7xq-3001.preview.app.github.dev/api/token', opts)
-            .then(resp => {
-                if(resp.status === 200) return resp.json();
-                else alert('There has been an error')
-            })
-            .then()
-            .catch(error => (
-                console.error('There was an error', error)
-            ))
-
+        actions.login(email, password)
     }
+
+    if (store.token && store.token!="" && store.token!=undefined) history.push("/private/")
 
     return (
         <div id="endPointBody">
+            {(store.token && store.token!="" && store.token!=undefined) ? "You are logged in with this token" + store.token:
             <form>
                 <h1 class="text-center" id='loginH1'>
                     Login
@@ -41,12 +31,10 @@ export function Login() {
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" 
-                    placeholder="Password" value={password} onChange={(e) => setEmail(e.target.value)}/>
+                    placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <Link to="/private/">
-			        <button className="btn btn-primary" id="btn" onClick={handleClick}>Login</button>
-			    </Link>
-            </form>
+			    <button className="btn btn-primary" id="btn" onClick={handleClick}>Login</button>
+            </form>}
 
             <Link to="/">
 				<button className="btn btn-primary" id="btn">Back home</button>

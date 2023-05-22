@@ -16,7 +16,7 @@ export const Private = props => {
                     </Link>
                     <div className="ml-auto">
                         <Link to="/">
-                            <button className="btn btn-primary" id="btn">Logout</button>
+                            <button className="btn btn-primary" id="btn" onClick={() => actions.logout()}>Logout</button>
                         </Link>
                     </div>
                 </div>
