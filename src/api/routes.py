@@ -8,6 +8,17 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 
+@api.route('/token', methods=['POST'])
+def handle_token():
+
+    response_body = {
+        "message": "This is the backend to generates a token only if it receives an email and password that matches in the database, and will return the token to the front-end if everything is ok."
+    }
+
+    return jsonify(response_body), 200
+
+# Then, on every other endpoint in your database you will have to validate if the token exists in the request header and if it does you will have to validate it
+
 @api.route('/signup', methods=['POST', 'GET'])
 def handle_signup():
 
