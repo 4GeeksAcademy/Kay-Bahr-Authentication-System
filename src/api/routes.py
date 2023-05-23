@@ -42,11 +42,13 @@ def handle_login():
 
     return jsonify(response_body), 200
 
-@api.route('/private', methods=['POST', 'GET'])
+@api.route('/private', methods=['GET'])
+@jwt_required()
 def handle_private():
 
+    email = get_jwt_identity()
     response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+        "message": "Hello, "+ email +"! This is your private page when logged in."
     }
 
     return jsonify(response_body), 200

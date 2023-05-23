@@ -6,6 +6,10 @@ import { Context } from "../store/appContext";
 export const Private = props => {
     const { store, actions } = useContext(Context);
 	const params = useParams();
+
+    useEffect(() => {
+        if (store.token && store.token!="" && store.token!=undefined) actions.getMessage()
+    }, [store.token])
     
     return (
         <div>
@@ -22,7 +26,9 @@ export const Private = props => {
                 </div>
             </nav>
 
-            <h1>This is the Private Page of {store.demo[params.theid].title}</h1>
+            <div className="alert alert-info">
+				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
+			</div>
 
             <Link to="/">
 				<span className="btn btn-primary btn-lg" href="#" role="button" id="btn">

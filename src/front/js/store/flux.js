@@ -24,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			syncTokenFromLocalStore: () => {
 				const token = localStorage.getItem("token")
-				if (store.token && store.token!="" && store.token!=undefined) setStore({token: token})
+				if (token && token!="" && token!=undefined) setStore({token: token})
 			},
 
 			login: async (email, password) => {
@@ -72,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					}
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello", opts)
+					const resp = await fetch("https://kaybahr-upgraded-giggle-v4j9p75vrvpc6gw5-3001.preview.app.github.dev/api/private", opts)
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
