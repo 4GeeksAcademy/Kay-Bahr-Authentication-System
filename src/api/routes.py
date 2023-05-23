@@ -24,16 +24,7 @@ def create_token():
 
 # Then, on every other endpoint in your database you will have to validate if the token exists in the request header and if it does you will have to validate it
 
-@api.route('/signup', methods=['POST', 'GET'])
-def handle_signup():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
-
-@api.route('/login', methods=['POST', 'GET'])
+@api.route('/login', methods=['POST'])
 def handle_login():
 
     response_body = {

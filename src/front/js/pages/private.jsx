@@ -27,7 +27,7 @@ export const Private = props => {
             </nav>
 
             <div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
+				{store.message}
 			</div>
 
             <Link to="/">
