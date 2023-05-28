@@ -22,8 +22,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 
-			syncTokenFromLocalStore: () => {
-				const token = localStorage.getItem("token")
+			syncTokenFromSessionStore: () => {
+				const token = sessionStorage.getItem("token")
+				console.log("Application just loaded, syncing the session storage token.")
 				if (token && token!="" && token!=undefined) setStore({token: token})
 			},
 
@@ -48,7 +49,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 					const data = await resp.json()
 					console.log("This came from the backend", token)
-					localStorage.setItem("token", data.access_token)
+					sessionStorage.setItem("token", data.access_token)
 					setStore({token: data.access_token})
 					return true
 				}
@@ -58,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			logout: () => {
-				localStorage.removeItem("token")
+				sessionStorage.removeItem("token")
 				console.log("Logging out")
 				setStore({token: null})
 			},
