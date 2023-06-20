@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { Context } from "../store/appContext";
@@ -9,19 +9,18 @@ export function Signup() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    console.log("This is your token: ", store.token);
-
-    const handleSubmit = () => {
-        actions.login(email, password).then(() => {
-            if (store.token && store.token !== "" && store.token !== undefined) {
-                navigate("/private");
-            }
-        });
-    }
-
-    if (store.token && store.token !== "" && store.token !== undefined) {
-        navigate("/private");
-    }
+    const handleSubmit = async () => {
+        try {
+          const success = await actions.login(email, password);
+          if (success && store.token && store.token !== "" && store.token !== undefined) {
+            navigate("/private");
+          } else {
+            alert("There has been an error");
+          }
+        } catch (error) {
+          console.error("There has been an error with logging in", error);
+        }
+    };
 
     return (
         <div id="endPointBody">
