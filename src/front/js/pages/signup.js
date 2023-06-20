@@ -49,9 +49,7 @@ export function Signup() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <Link to="/private">
-                        <button className="btn btn-primary" id="btn" type="submit" onClick={handleClick}>Submit</button>
-                    </Link>
+                    <button className="btn btn-primary" id="btn" type="submit" onClick={handleClick}>Submit</button>
                 </form>
             )}
             <Link to="/">

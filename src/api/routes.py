@@ -5,9 +5,8 @@ import os
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Sign_in
 from api.utils import generate_sitemap, APIException
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+
 
 api = Blueprint('api', __name__)
 
@@ -20,7 +19,7 @@ def create_token():
         return jsonify({"msg": "Bad email or password"}), 401
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token), 200
 
 # Then, on every other endpoint in your database you will have to validate if the token exists in the request header and if it does you will have to validate it
 
@@ -36,10 +35,8 @@ def handle_login():
 @api.route('/private', methods=['GET'])
 @jwt_required()
 def handle_private():
-
     email = get_jwt_identity()
     response_body = {
-        "message": "Hello, "+ email +"! This is your private page when logged in."
+        "message": "Hello, " + email + "! This is your private page when logged in."
     }
-
     return jsonify(response_body), 200

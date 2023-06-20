@@ -49,9 +49,7 @@ export function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <Link to="/private">
-                        <button className="btn btn-primary" id="btn" onClick={handleClick}>Login</button>
-                    </Link>
+                    <button className="btn btn-primary" id="btn" onClick={handleClick}>Login</button>
                 </form>
                 )
             }
