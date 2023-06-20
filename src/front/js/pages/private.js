@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Private = (props) => {
+export const Private = () => {
     const { store, actions } = useContext(Context);
     const params = useParams();
 
