@@ -24,8 +24,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			syncTokenFromSessionStore: () => {
 				const token = sessionStorage.getItem("token")
-				console.log("Application just loaded, syncing the session storage token.")
+
 				if (token && token != "" && token != undefined) setStore({token: token})
+				console.log(
+					"Everything loaded, syncingthe session storage token to the store."
+				)
 			},
 
 			login: async (email, password) => {
@@ -36,8 +39,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify({
-						"email": email,
-						"password": password
+						email: email,
+						password: password
 					})
 				}
 				
@@ -52,7 +55,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("This came from the backend", data)
 					sessionStorage.setItem("token", data.access_token)
 					setStore({token: data.access_token})
-					return true
 				}
 				catch(error) {
 					console.error("There has been an error with logging in", error)
@@ -61,8 +63,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			logout: () => {
 				const token = sessionStorage.removeItem("token");
-				console.log("Logging out");
 				setStore({token: null});
+				console.log("Logging out");
 			},
 
 			getMessage: async () => {
@@ -74,7 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					}
 					// fetching data from the backend
-					const resp = await fetch("https://kaybahr-upgraded-giggle-v4j9p75vrvpc6gw5-3001.preview.app.github.dev/api/private", opts)
+					const resp = await fetch('https://kaybahr-upgraded-giggle-v4j9p75vrvpc6gw5-3001.preview.app.github.dev/api/token', opts)
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
