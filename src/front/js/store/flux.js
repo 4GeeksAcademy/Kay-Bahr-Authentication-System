@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			syncTokenFromSessionStore: () => {
 				const token = sessionStorage.getItem("token")
 				console.log("Application just loaded, syncing the session storage token.")
-				if (token && token!="" && token!=undefined) setStore({token: token})
+				if (token && token != "" && token != undefined) setStore({token: token})
 			},
 
 			login: async (email, password) => {
@@ -45,23 +45,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const resp = await fetch('https://kaybahr-upgraded-giggle-v4j9p75vrvpc6gw5-3001.preview.app.github.dev/api/token', opts)
 					if (resp.status !== 200){
 						alert("There has been an error");
-						return false}
+						return false;
+					}
 	
 					const data = await resp.json()
-					console.log("This came from the backend", token)
+					console.log("This came from the backend", data)
 					sessionStorage.setItem("token", data.access_token)
 					setStore({token: data.access_token})
 					return true
 				}
-				catch(error){
-					console.error("There has been an error with logging in")
+				catch(error) {
+					console.error("There has been an error with logging in", error)
 				}
 			},
 
 			logout: () => {
-				sessionStorage.removeItem("token")
-				console.log("Logging out")
-				setStore({token: null})
+				const token = sessionStorage.removeItem("token");
+				console.log("Logging out");
+				setStore({token: null});
 			},
 
 			getMessage: async () => {
@@ -81,20 +82,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}catch(error){
 					console.log("Error loading message from backend", error)
 				}
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
 			}
 		}
 	};
