@@ -21,7 +21,7 @@ export function Signup() {
     return (
         <div id="endPointBody">
             {(store.token && store.token !== "" && store.token !== undefined) ?
-            ("You are logged in with this token" + store.token) : (
+                ("You are logged in with this token" + store.token) : (
                 <form>
                     <h1 className="text-center" id='loginH1'>
                         Sign up
@@ -49,7 +49,9 @@ export function Signup() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <button className="btn btn-primary" id="btn" type="submit" onClick={handleClick}>Submit</button>
+                    <Link to="/private">
+                        <button className="btn btn-primary" id="btn" type="submit" onClick={handleClick}>Submit</button>
+                    </Link>
                 </form>
             )}
             <Link to="/">

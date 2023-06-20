@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				
 				try {
-					const resp = await fetch('https://kaybahr-upgraded-giggle-v4j9p75vrvpc6gw5-3001.preview.app.github.dev/api/token', opts)
+					const resp = await fetch('https://kaybahr-didactic-space-halibut-9vgr64x95xwc9xg6-3001.preview.app.github.dev/api/token', opts)
 					if (resp.status !== 200){
 						alert("There has been an error");
 						return false;
@@ -76,7 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					}
 					// fetching data from the backend
-					const resp = await fetch('https://kaybahr-upgraded-giggle-v4j9p75vrvpc6gw5-3001.preview.app.github.dev/api/token', opts)
+					const resp = await fetch('https://kaybahr-didactic-space-halibut-9vgr64x95xwc9xg6-3001.preview.app.github.dev/api/token', opts)
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves

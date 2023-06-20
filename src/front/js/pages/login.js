@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 
 export function Login() {
     const { store, actions } = useContext(Context);
-    const [email, setEmail] = useState(""); // Provide an initial value
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
