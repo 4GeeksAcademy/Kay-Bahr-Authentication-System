@@ -13,25 +13,10 @@ export const Private = (props) => {
         }
     }, [store.token]);
 
-    const email = store.email; // Assuming email is stored in the store
+    const email = store.email;
 
     return (
         <div>
-            <nav className="navbar navbar-light bg-light">
-                <div className="container">
-                    <Link to="/">
-                        <span className="navbar-brand mb-0 h1">Authentication System</span>
-                    </Link>
-                    <div className="ml-auto">
-                        <Link to="/">
-                            <button className="btn btn-primary" id="btn" onClick={() => actions.logout()}>
-                                Logout
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </nav>
-
             <div className="alert alert-info">
                 {store.message || "Hello, " + email + "! This is your private page when logged in."}
             </div>
