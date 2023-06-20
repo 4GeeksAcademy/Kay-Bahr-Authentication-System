@@ -26,9 +26,6 @@ export function Login() {
                     <h1 className="text-center" id='loginH1'>
                         Log In
                     </h1>
-                    <p className="forgot-password text-right">
-                        Not registered? <button href="/signup">Sign up here!</button>
-                    </p>
                     <div className="mb-3">
                         <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                         <input
