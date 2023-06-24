@@ -10,12 +10,13 @@ export function Signup() {
     const navigate = useNavigate();
 
     console.log("This is your token: ", store.token);
+
     const handleClick = () => {
-        actions.login(email, password).then(() => {
-            if (store.token && store.token !== "" && store.token !== undefined) {
-                navigate("/private");
-            }
-        });
+        actions.login(email, password);
+    }
+
+    if (store.token && store.token !== "" && store.token !== undefined) {
+        navigate("/private");
     }
 
     return (
@@ -29,9 +30,7 @@ export function Signup() {
                     <div className="mb-3">
                         <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                         <input
-                            type="email"
                             className="form-control"
-                            id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                             placeholder="Email"
                             value={email}
