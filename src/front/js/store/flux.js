@@ -3,25 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: null,
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-
 			syncTokenFromSessionStore: () => {
 				const token = sessionStorage.getItem("token")
 
@@ -39,8 +22,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify({
-						"email": email,
-						"password": password
+						email: email,
+						password: password
 					})
 				}
 				
@@ -61,6 +44,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("There has been an error with logging in", error)
 				}
 			},
+
+			signup: async (email, password) => {
+                try {
+                    const opts = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                    };
+
+                    const response = await fetch('https://kaybahr-didactic-space-halibut-9vgr64x95xwc9xg6-3001.preview.app.github.dev/api/signup', opts);
+                    if (!response.ok) {
+                        throw new Error('Failed to create user');
+                    }
+
+                    // User created successfully
+                    return true;
+                } catch (error) {
+                    console.error('Error creating user:', error);
+                    return false;
+                }
+            },
 
 			logout: () => {
 				const token = sessionStorage.removeItem("token");

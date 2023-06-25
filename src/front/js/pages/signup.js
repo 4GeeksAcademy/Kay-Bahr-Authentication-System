@@ -11,8 +11,20 @@ export function Signup() {
 
     console.log("This is your token: ", store.token);
 
-    const handleClick = () => {
-        actions.login(email, password);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const signUpSuccess = await actions.signup(email, password);
+        if (signUpSuccess) {
+            const loginSuccess = await actions.login(email, password);
+            if (loginSuccess) {
+                navigate("/private");
+            } else {
+                alert("Failed to log in. Please check your credentials and try again.");
+            }
+        } else {
+            alert("Failed to create user. Please check your input and try again.");
+        }
     }
 
     if (store.token && store.token !== "" && store.token !== undefined) {
@@ -48,7 +60,7 @@ export function Signup() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <button className="btn btn-primary" id="btn" type="submit" onClick={handleClick}>Submit</button>
+                    <button className="btn btn-primary" id="btn" type="submit" onClick={handleSubmit}>Submit</button>
                 </form>
             )}
             <Link to="/">
