@@ -5,7 +5,6 @@ import { Context } from "../store/appContext";
 
 export const Private = () => {
     const { store, actions } = useContext(Context);
-    const params = useParams();
 
     useEffect(() => {
         if (store.token && store.token !== "" && store.token !== undefined) {
@@ -13,12 +12,10 @@ export const Private = () => {
         }
     }, [store.token]);
 
-    const email = store.email;
-
     return (
         <div>
             <div className="alert alert-info">
-                {store.message || "Hello, " + email + "! This is your private page when logged in."}
+                {store.message || "Hello! This is your private page when logged in."}
             </div>
 
             <Link to="/">

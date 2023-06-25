@@ -9,14 +9,12 @@ export function Signup() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    console.log("This is your token: ", store.token);
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        const signUpSuccess = await actions.signup(email, password);
+        const signUpSuccess = actions.signup(email, password);
         if (signUpSuccess) {
-            const loginSuccess = await actions.login(email, password);
+            const loginSuccess = actions.login(email, password);
             if (loginSuccess) {
                 navigate("/private");
             } else {

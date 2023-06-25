@@ -13,6 +13,15 @@ export function Login() {
         e.preventDefault();
 
         actions.login(email, password);
+            if (
+                typeof result == "string" &&
+                result.includes("Wrong email or password")
+              ) {
+                setError("Wrong email or password");
+            }
+            else {
+                navigate("/private");
+            }
     }
 
     if (store.token && store.token !== "" && store.token !== undefined) {
