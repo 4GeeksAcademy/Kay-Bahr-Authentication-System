@@ -8,10 +8,10 @@ export function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
-    console.log("This is your token: ", store.token);
     
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault();
+
         actions.login(email, password);
     }
 
